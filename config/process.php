@@ -99,6 +99,45 @@ use function PHPSTORM_META\type;
                 $error = $e->getMessage();
                 echo"Erro: $error";
             }
+        
+
+        // INSERIR ENDEREÇO - INCOMPLETO :D - BATENDO A CABEÇA PRA ENTENDER PORQUE NAO ESTA ATUALIZANDO O BANCO DE DADOS
+        } else if ($data["type"] === "addAdress") {
+
+
+            $cep = $data["cep"];
+            $rua = $data["rua"];
+            $numero = $data["numero"];
+            $bairro = $data["bairro"];
+            $cidade = $data["cidade"];
+            $estado = $data["estado"];
+            $id = $data["id"];
+
+
+            $query = "UPDATE contacts 
+            SET cep = :cep, rua = :rua, numero = :numero, bairro = :bairro, cidade = :cidade, estado = :estado
+            WHERE id = :id";
+
+            $stmt = $conn->prepare($query);
+
+            $stmt->bindParam(":cep", $cep);
+            $stmt->bindParam(":rua", $rua);
+            $stmt->bindParam(":numero", $numero);
+            $stmt->bindParam(":bairro", $bairro);
+            $stmt->bindParam(":cidade", $cidade);
+            $stmt->bindParam(":estado", $estado);
+            $stmt->bindParam(":id", $id);
+
+            try {
+
+                $stmt->execute();
+                $_SESSION["msg"] = "Endereço atualizado com sucesso!";
+        
+            } catch (PDOException $e) {
+                // erro na conexão
+                $error = $e->getMessage();
+                echo"Erro: $error";
+            }
 
         }
  
@@ -143,4 +182,6 @@ use function PHPSTORM_META\type;
     // FECHAR CONEXÃO
     $conn = null;
 
+
+    //INFELIZMENTE A CORRERIA DO DIA A DIA NAO ME PERMITIU ADICIONAR MAIS FUNCIONALIDADES A TEMPO. MEU FOCO NOS ULTIMOS MESES TINHA SIDO FRONT END, MAS O TESTE ME TROUXE NOVOS HORIZONTES EM RELAÇÃO AO BACK END. PRETENDO PROSSEGUIR COM OS ESTUDOS DE BACK DAQUI EM DIANTE. INDEPENDENTE DO RESULTADO DO TESTE, AGRADEÇO PELA OPORTUNIDADE E PELO DESAFIO. :D
 ?>

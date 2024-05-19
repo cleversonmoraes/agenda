@@ -33,7 +33,9 @@
             </div>
             <button type="submit" class="btn btn-primary">Atualizar</button>
         </form>
-
+        <form action="<?= $BASE_URL ?>addAdress.php" method="POST">
+            <button type="submit" class="btn btn-primary">Adicionar Endereço</button>
+        </form>
     </div>
 
 
