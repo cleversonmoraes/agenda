@@ -26,7 +26,7 @@
                             <td scope="row"><?= $contact["lastName"] ?></td>
                             <td scope="row"><?= $contact["cpf"] ?></td>
                             <td scope="row"><?= $contact["email"] ?></td>
-                            <td scope="row"><?= $contact["nasc"] ?></td>
+                            <td scope="row"><?= date('d/m/Y', strtotime($contact["nasc"])) ?></td>
                             <td class="actions">
                                 <a href="<?= $BASE_URL ?>show.php?id=<?= $contact["id"] ?>"><i class="fas fa-eye check-icon"></i></a>
                                 <a href="<?= $BASE_URL ?>edit.php?id=<?= $contact["id"] ?>"><i class="fas fa-edit check-icon"></i></a>
